@@ -3,48 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/ToDo_label"
+        android:id="@+id/Class_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/aldrich"
-        android:text="To Do:"
+        android:text="Class List"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/add_todo"
+        android:id="@+id/add_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="#A01E1E"
         android:text="Add"
-        android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/classes"
+        android:id="@+id/to_do"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="#A01E1E"
-        android:text="Class List"
+        android:text="To Do"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/add_todo" />
-
+        app:layout_constraintStart_toEndOf="@+id/add_class" />
 </androidx.constraintlayout.widget.ConstraintLayout>
