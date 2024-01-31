@@ -28,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.className.setText(items.get(position).getClassName());
         holder.professor.setText(items.get(position).getProfessor());
-        holder.roomNumber.setText(items.get(position).getProfessor());
+        holder.roomNumber.setText(items.get(position).getRoomNumber());
         holder.section.setText(items.get(position).getSection());
     }
 

@@ -4,10 +4,10 @@ public class Item {
     private String className;
     private String professor;
     private String section;
-    private int roomNumber;
+    private String roomNumber;
 
 
-    public Item(String className, String professor, String section, int roomNumber) {
+    public Item(String className, String professor, String section, String roomNumber) {
         this.className = className;
         this.professor = professor;
         this.section = section;
@@ -38,11 +38,11 @@ public class Item {
         this.section = section;
     }
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 
