@@ -1,5 +1,6 @@
 package com.example.college_scheduler_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityToDo extends AppCompatActivity {
+    private static final int REQUEST_ADD_TASK = 1;
     private RecyclerView recyclerView;
     private CardAdapter adapter;
     private List<CardModel> list;
@@ -28,9 +30,7 @@ public class ActivityToDo extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-//        list.add(new CardModel("Exam 1", "02/03/24", "CS1332", "11:59", "CULC"));
-//        list.add(new CardModel("Homework 1", "02/03/24", "CS2050", "11:59", "home"));
-//        adapter.notifyDataSetChanged();
+
 
         Button classes_button = findViewById(R.id.classes_button2);
         classes_button.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +39,30 @@ public class ActivityToDo extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        Button add_task_button = findViewById(R.id.add_tasks);
+        add_task_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityToDo.this, ActivityAddTask.class);
+                startActivityForResult(intent, REQUEST_ADD_TASK);
+            }
+        });
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_ADD_TASK && resultCode == RESULT_OK && data != null) {
+            String task = data.getStringExtra("task");
+            String date = data.getStringExtra("date");
+            String course = data.getStringExtra("course");
+            String time = data.getStringExtra("time");
+            String location = data.getStringExtra("location");
+
+            list.add(new CardModel(task, date, course, time, location));
+            adapter.notifyDataSetChanged();
+        }
     }
 
 }
