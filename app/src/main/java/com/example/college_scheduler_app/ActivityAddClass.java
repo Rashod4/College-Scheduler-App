@@ -41,7 +41,7 @@ public class ActivityAddClass extends AppCompatActivity {
 //                    editor.putString("section", section);
 //                    editor.putString("roomNumber", roomNumber);
 //                    editor.apply();
-                    Intent intent = new Intent();
+                    Intent intent = new Intent(ActivityAddClass.this, MainActivity.class);
                     intent.putExtra("className", className);
                     intent.putExtra("professor", professor);
                     intent.putExtra("section", section);
