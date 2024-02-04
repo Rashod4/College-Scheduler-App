@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button to_do_button = findViewById(R.id.to_do_button);
+        to_do_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ActivityToDo.class);
+                startActivity(intent);
+            }
+        });
+
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

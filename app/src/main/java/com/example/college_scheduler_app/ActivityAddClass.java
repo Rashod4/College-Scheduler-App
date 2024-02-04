@@ -76,8 +76,7 @@ public class ActivityAddClass extends AppCompatActivity {
         classes_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityAddClass.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
     }
