@@ -1,6 +1,8 @@
 package com.example.college_scheduler_app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityToDo extends AppCompatActivity {
-    private static final int REQUEST_ADD_TASK = 1;
     private RecyclerView recyclerView;
     private CardAdapter adapter;
     private List<CardModel> list;
@@ -29,8 +30,19 @@ public class ActivityToDo extends AppCompatActivity {
         adapter = new CardAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
+        SharedPreferences sp = getApplication().getSharedPreferences("TaskDetails", Context.MODE_PRIVATE);
+        int taskCount = sp.getInt("taskCount", 0);
 
-
+        // Retrieve all tasks from SharedPreferences and add them to the list
+        for (int i = 0; i < taskCount; i++) {
+            String task = sp.getString("task" + i, "");
+            String date = sp.getString("date" + i, "");
+            String course = sp.getString("course" + i, "");
+            String time = sp.getString("time" + i, "");
+            String location = sp.getString("location" + i, "");
+            list.add(new CardModel(task, date, course, time, location));
+        }
+        adapter.notifyDataSetChanged();
 
         Button classes_button = findViewById(R.id.classes_button2);
         classes_button.setOnClickListener(new View.OnClickListener() {
@@ -45,24 +57,23 @@ public class ActivityToDo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityToDo.this, ActivityAddTask.class);
-                startActivityForResult(intent, REQUEST_ADD_TASK);
+                startActivity(intent);
             }
         });
 
     }
+    // Method to update SharedPreferences when a task is edited
+    void updateTaskInSharedPreferences(int position, CardModel updatedTask) {
+        SharedPreferences sp = getSharedPreferences("TaskDetails", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_ADD_TASK && resultCode == RESULT_OK && data != null) {
-            String task = data.getStringExtra("task");
-            String date = data.getStringExtra("date");
-            String course = data.getStringExtra("course");
-            String time = data.getStringExtra("time");
-            String location = data.getStringExtra("location");
+        editor.putString("task" + position, updatedTask.getTask());
+        editor.putString("date" + position, updatedTask.getDate());
+        editor.putString("course" + position, updatedTask.getCourse());
+        editor.putString("time" + position, updatedTask.getTime());
+        editor.putString("location" + position, updatedTask.getLocation());
 
-            list.add(new CardModel(task, date, course, time, location));
-            adapter.notifyDataSetChanged();
-        }
+        editor.apply();
     }
 
 }
