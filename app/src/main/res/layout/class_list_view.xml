@@ -19,14 +19,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="casual"
             android:gravity="center"
             android:text="@string/classes"
-            android:textSize="24sp" />
+            android:textColor="#F1EBEB"
+            android:textSize="34sp"
+            android:typeface="normal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="#81F3EEEE"
+            />
 
     </LinearLayout>
 
@@ -41,15 +46,19 @@
             android:id="@+id/add_classes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="#100E0E"
             android:text="Add Classes"
-            android:layout_margin="5dp" />
+            app:iconTint="#F6E6E6"
+            app:strokeColor="#00E1D2D2" />
 
         <Button
             android:id="@+id/to_do_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To Do"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:backgroundTint="#0C0B0B"
+            android:text="To Do" />
 
     </LinearLayout>
 
