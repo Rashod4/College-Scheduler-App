@@ -76,4 +76,25 @@ public class ActivityToDo extends AppCompatActivity {
         editor.apply();
     }
 
+    void deleteTaskFromSharedPreferences(int position) {
+        SharedPreferences sp = getSharedPreferences("TaskDetails", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        // Remove task details corresponding to the given position
+        editor.remove("task" + position);
+        editor.remove("date" + position);
+        editor.remove("course" + position);
+        editor.remove("time" + position);
+        editor.remove("location" + position);
+
+        // Update task count if necessary
+        int taskCount = sp.getInt("taskCount", 0);
+        if (taskCount > 0) {
+            editor.putInt("taskCount", taskCount - 1);
+        }
+
+        editor.apply();
+    }
+
+
 }

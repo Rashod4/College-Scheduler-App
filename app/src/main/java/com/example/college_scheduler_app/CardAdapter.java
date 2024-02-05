@@ -82,6 +82,31 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                     }
                 });
                 dialog.show();
+
+                Button delete = dialog.findViewById(R.id.tasks_back);
+                delete.setText("Delete");
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int adapterPosition = holder.getAdapterPosition();
+
+                        // Remove the item from SharedPreferences
+                        ((ActivityToDo) context).deleteTaskFromSharedPreferences(adapterPosition);
+
+                        // Remove the item from the list
+                        details.remove(adapterPosition);
+
+                        // Update positions in SharedPreferences if necessary
+                        for (int i = adapterPosition; i < details.size(); i++) {
+                            ((ActivityToDo) context).updateTaskInSharedPreferences(i, details.get(i));
+                        }
+
+                        // Notify the adapter about the removal
+                        notifyItemRemoved(adapterPosition);
+
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
