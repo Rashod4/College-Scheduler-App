@@ -5,6 +5,12 @@
     android:layout_marginTop="10dp"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <LinearLayout
+        android:id="@+id/llrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,12 +46,14 @@
         android:layout_below="@+id/section"
         android:layout_marginLeft="10dp"
         tools:text="room number"/>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_below="@+id/roomNumber"
         android:layout_marginTop="10dp"
         android:background="#DAD8D8"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

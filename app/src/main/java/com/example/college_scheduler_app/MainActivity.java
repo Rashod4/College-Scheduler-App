@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    //private static final int REQUEST_ADD_CLASS = 1;
     private RecyclerView recyclerView;
     private MyAdapter adapter;
     private List<Item> items;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ActivityAddClass.class);
-                //startActivityForResult(intent, REQUEST_ADD_CLASS);
                 startActivity(intent);
             }
         });
@@ -63,17 +61,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == REQUEST_ADD_CLASS && resultCode == RESULT_OK && data != null) {
-//            String className = data.getStringExtra("className");
-//            String professor = data.getStringExtra("professor");
-//            String section = data.getStringExtra("section");
-//            String roomNumber = data.getStringExtra("roomNumber");
-//
-//            items.add(new Item(className, professor, section, roomNumber));
-//            adapter.notifyDataSetChanged();
-//        }
-//    }
+    void updateTaskInSharedPreferences(int position, Item updatedClass) {
+        SharedPreferences sp = getSharedPreferences("ClassDetails", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        editor.putString("className" + position, updatedClass.getClassName());
+        editor.putString("professor" + position, updatedClass.getProfessor());
+        editor.putString("section" + position, updatedClass.getSection());
+        editor.putString("roomNumber" + position, updatedClass.getRoomNumber());
+
+        editor.apply();
+    }
+
+    void deleteTaskFromSharedPreferences(int position) {
+        SharedPreferences sp = getSharedPreferences("ClassDetails", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        // Remove task details corresponding to the given position
+        editor.remove("className" + position);
+        editor.remove("professor" + position);
+        editor.remove("section" + position);
+        editor.remove("roomNumber" + position);
+
+        // Update task count if necessary
+        int taskCount = sp.getInt("taskCount", 0);
+        if (taskCount > 0) {
+            editor.putInt("taskCount", taskCount - 1);
+        }
+
+        editor.apply();
+    }
 
 }
