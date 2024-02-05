@@ -19,6 +19,10 @@ public class ActivityToDo extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CardAdapter adapter;
     private List<CardModel> list;
+    private List<CardModel> courseList;
+    private List<CardModel> dateList;
+    private List<CardModel> doneList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,9 @@ public class ActivityToDo extends AppCompatActivity {
         recyclerView = findViewById(R.id.CardRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
+        courseList = new ArrayList<>();
+        dateList = new ArrayList<>();
+        doneList = new ArrayList<>();
         adapter = new CardAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
@@ -44,6 +51,7 @@ public class ActivityToDo extends AppCompatActivity {
             list.add(new CardModel(task, date, course, time, location));
         }
         adapter.notifyDataSetChanged();
+
 
         Button classes_button = findViewById(R.id.classes_button2);
         classes_button.setOnClickListener(new View.OnClickListener() {
@@ -102,5 +110,22 @@ public class ActivityToDo extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    List<CardModel> courseSortList(List<CardModel> unsorted, List<CardModel> courseList) {
+        int n = unsorted.size();
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (list.get(i).getCourse().compareTo(list.get(i + 1).getCourse()) > 0) {
+                    CardModel temp = list.get(i);
+                    list.set(i, list.get(i + 1));
+                    list.set(i + 1, temp);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+        return courseList;
     }
 }

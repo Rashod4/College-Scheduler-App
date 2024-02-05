@@ -14,14 +14,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/task"
-            android:layout_width="match_parent"
+            android:layout_width="302dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
             android:textSize="20sp"
             tools:text="Task" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="50dp"
+            android:layout_height="24dp" />
 
         <TextView
             android:id="@+id/date"
@@ -65,6 +71,7 @@
             android:layout_below="@id/location"
             android:layout_marginTop="10dp"
             android:background="#DAD8D8" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
