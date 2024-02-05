@@ -23,6 +23,12 @@
             android:text="@string/to_do"
             android:textSize="24sp" />
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:text="Sort" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/CardRecyclerView"
             android:layout_width="match_parent"
