@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
-    TextView className, professor, section, roomNumber;
+    TextView className, professor, section, roomNumber, time, repeatingDays, location;
     LinearLayout llrow;
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -16,6 +16,9 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         professor = itemView.findViewById(R.id.professor);
         section = itemView.findViewById(R.id.section);
         roomNumber = itemView.findViewById(R.id.roomNumber);
+        time = itemView.findViewById(R.id.timee);
+        location = itemView.findViewById(R.id.location);
+        repeatingDays = itemView.findViewById(R.id.repeatingDays);
         llrow = itemView.findViewById(R.id.llrow);
     }
 }
