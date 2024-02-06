@@ -94,6 +94,8 @@ public class ActivityToDo extends AppCompatActivity {
                     courseSort(list);
                 } else if (itemId == R.id.dateSort) {
                     dateSort(list);
+                } else if (itemId == R.id.doneSort) {
+                    doneSort(list);
                 }
                 adapter.notifyDataSetChanged();
                 return true;
@@ -141,6 +143,7 @@ public class ActivityToDo extends AppCompatActivity {
         return true;
     }
 
+    // Method to sort the tasks based on course
     void courseSort(List<CardModel> list) {
         int n = list.size();
         boolean swapped;
@@ -157,6 +160,7 @@ public class ActivityToDo extends AppCompatActivity {
         } while (swapped);
     }
 
+    // Method to sort the tasks by due date
     void dateSort(List<CardModel> list) {
         int n = list.size();
         boolean swapped;
@@ -173,6 +177,7 @@ public class ActivityToDo extends AppCompatActivity {
         } while (swapped);
     }
 
+    // Helper method to compare due dates for sorting
     int compareDate(String date1, String date2) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         try {
@@ -182,5 +187,22 @@ public class ActivityToDo extends AppCompatActivity {
         } catch (ParseException e) {
             return 0;
         }
+    }
+
+    // Method to sort tasks based on complete/incomplete
+    void doneSort(List<CardModel> list) {
+        int n = list.size();
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (!list.get(i).getDone() && list.get(i + 1).getDone()) {
+                    CardModel temp = list.get(i);
+                    list.set(i, list.get(i + 1));
+                    list.set(i + 1, temp);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
     }
 }
