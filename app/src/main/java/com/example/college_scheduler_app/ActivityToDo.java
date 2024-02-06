@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.PopupMenu;
 import android.view.View;
 import android.widget.Button;
 
@@ -71,6 +73,29 @@ public class ActivityToDo extends AppCompatActivity {
             }
         });
 
+        Button sortButton = findViewById(R.id.sortButton);
+        sortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(v);
+            }
+        });
+
+    }
+
+    private void showPopupMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.sort_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.courseSort) {
+
+                }
+                return true;
+            }
+        });
     }
     // Method to update SharedPreferences when a task is edited
     void updateTaskInSharedPreferences(int position, CardModel updatedTask) {
