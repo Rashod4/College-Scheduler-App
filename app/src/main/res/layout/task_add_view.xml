@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ActivityAddTask"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bullitenboard">
 
     <TextView
         android:id="@+id/title"
@@ -14,7 +15,8 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/add_task"
-        android:textSize="24sp" />
+        android:textColor="@color/black"
+        android:textSize="34sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,32 +30,42 @@
             android:layout_width="match_parent"
             android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
-            android:hint="Task" />
+            android:hint="Task"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date" />
+            android:hint="Date"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Course" />
+            android:hint="Course"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Time"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location"/>
+            android:hint="Location"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
 
     <LinearLayout
@@ -67,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:backgroundTint="@color/black"
             android:text="@string/add" />
 
         <Button
@@ -74,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:backgroundTint="@color/black"
             android:text="Tasks" />
     </LinearLayout>
 
