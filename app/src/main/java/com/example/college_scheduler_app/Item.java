@@ -5,13 +5,43 @@ public class Item {
     private String professor;
     private String section;
     private String roomNumber;
+    private String repeatingDays;
+    private String time;
+    private String location;
 
+    public String getRepeatingDays() {
+        return repeatingDays;
+    }
 
-    public Item(String className, String professor, String section, String roomNumber) {
+    public void setRepeatingDays(String repeatingDays) {
+        this.repeatingDays = repeatingDays;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Item(String className, String professor, String section,
+                String roomNumber, String repeatingDays, String time, String location) {
         this.className = className;
         this.professor = professor;
         this.section = section;
         this.roomNumber = roomNumber;
+        this.repeatingDays = repeatingDays;
+        this.time = time;
+        this.location = location;
     }
 
     public String getClassName() {

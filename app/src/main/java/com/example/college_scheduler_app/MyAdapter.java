@@ -37,10 +37,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.professor.setText(items.get(position).getProfessor());
         holder.roomNumber.setText(items.get(position).getRoomNumber());
         holder.section.setText(items.get(position).getSection());
+        holder.location.setText(items.get(position).getLocation());
+        holder.time.setText(items.get(position).getTime());
+        holder.repeatingDays.setText(items.get(position).getRepeatingDays());
 
         holder.llrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("Item clicked");
                 Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.class_add_view);
 
@@ -48,6 +52,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 EditText editProfessor = dialog.findViewById(R.id.edit_text_professor);
                 EditText editSection = dialog.findViewById(R.id.edit_text_section);
                 EditText editRoomNumber = dialog.findViewById(R.id.edit_text_room_number);
+                EditText editLocatoin = dialog.findViewById(R.id.edit_location);
+                EditText editTime = dialog.findViewById(R.id.edit_text_time);
+                EditText editRepeatingDays = dialog.findViewById(R.id.edit_repeating_days);
 
                 Button add_button = dialog.findViewById(R.id.add_button);
                 TextView title = dialog.findViewById(R.id.title);
@@ -59,6 +66,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 editProfessor.setText(items.get(holder.getAdapterPosition()).getProfessor());
                 editSection.setText(items.get(holder.getAdapterPosition()).getSection());
                 editRoomNumber.setText(items.get(holder.getAdapterPosition()).getRoomNumber());
+                editLocatoin.setText(items.get(holder.getAdapterPosition()).getLocation());
+                editTime.setText(items.get(holder.getAdapterPosition()).getTime());
+                editRepeatingDays.setText(items.get(holder.getAdapterPosition()).getRepeatingDays());
 
                 add_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -67,13 +77,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                         String professor = editProfessor.getText().toString();
                         String section = editSection.getText().toString();
                         String roomNumber = editRoomNumber.getText().toString();
+                        String location = editLocatoin.getText().toString();
+                        String time = editTime.getText().toString();
+                        String repeatingDays = editRepeatingDays.getText().toString();
 
-                        Item updatedClass = new Item(className, professor, section, roomNumber);
+                        Item updatedClass = new Item(className, professor, section, roomNumber, location, time, repeatingDays);
                         items.set(holder.getAdapterPosition(), updatedClass);
                         notifyItemChanged(holder.getAdapterPosition());
 
                         // Update SharedPreferences
-                        //((MainActivity) context).updateTaskInSharedPreferences(holder.getAdapterPosition(), updatedClass);
+                        ((MainActivity) context).updateTaskInSharedPreferences(holder.getAdapterPosition(), updatedClass);
 
                         dialog.dismiss();
                     }

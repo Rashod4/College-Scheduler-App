@@ -51,6 +51,36 @@
             android:textColor="@color/white"
             tools:text="room number" />
 
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/roomNumber"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="casual"
+            android:textColor="@color/white"
+            tools:text="Location" />
+
+        <TextView
+            android:id="@+id/timee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="casual"
+            android:textColor="@color/white"
+            tools:text="Time" />
+
+        <TextView
+            android:id="@+id/repeatingDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timee"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="casual"
+            android:textColor="@color/white"
+            tools:text="RepeatingDays" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"

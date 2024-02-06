@@ -47,7 +47,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
             @Override
             public void onClick(View v) {
                 Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.task_add_view);
+                dialog.setContentView(R.layout.exam_add_view);
 
                 EditText editTask = dialog.findViewById(R.id.edit_task);
                 EditText editDate = dialog.findViewById(R.id.edit_date);
