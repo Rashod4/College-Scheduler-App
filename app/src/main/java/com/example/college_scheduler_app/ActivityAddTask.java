@@ -26,8 +26,7 @@ public class ActivityAddTask extends AppCompatActivity {
         EditText editTask = findViewById(R.id.edit_task);
         EditText editDate = findViewById(R.id.edit_date);
         EditText editCourse = findViewById(R.id.edit_course);
-        EditText editTime = findViewById(R.id.edit_time);
-        EditText editLocation = findViewById(R.id.edit_location);
+
 
         Button add_task = findViewById(R.id.add_button);
         add_task.setOnClickListener(new View.OnClickListener() {
@@ -36,15 +35,11 @@ public class ActivityAddTask extends AppCompatActivity {
                 String task = editTask.getText().toString().trim();
                 String date = editDate.getText().toString().trim();
                 String course = editCourse.getText().toString().trim();
-                String time = editTime.getText().toString().trim();
-                String location = editLocation.getText().toString().trim();
 
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString("task" + taskCount, task);
                 editor.putString("date" + taskCount, date);
                 editor.putString("course" + taskCount, course);
-                editor.putString("time" + taskCount, time);
-                editor.putString("location" + taskCount, location);
                 editor.putInt("taskCount", taskCount + 1); // Increment the task count
                 editor.apply();
                 Toast.makeText(ActivityAddTask.this, "Task Details Added", Toast.LENGTH_SHORT).show();
@@ -53,8 +48,6 @@ public class ActivityAddTask extends AppCompatActivity {
                 editTask.getText().clear();
                 editDate.getText().clear();
                 editCourse.getText().clear();
-                editTime.getText().clear();
-                editLocation.getText().clear();
             }
         });
 
@@ -68,3 +61,4 @@ public class ActivityAddTask extends AppCompatActivity {
         });
     }
 }
+
