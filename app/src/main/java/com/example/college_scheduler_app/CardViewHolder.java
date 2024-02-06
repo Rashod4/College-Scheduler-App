@@ -16,7 +16,7 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
     public CardViewHolder(@NonNull View itemView) {
         super(itemView);
         task = itemView.findViewById(R.id.task);
-        done = itemView.findViewById(R.id.checkbox);
+        //done = itemView.findViewById(R.id.checkbox);
         date = itemView.findViewById(R.id.date);
         course = itemView.findViewById(R.id.course);
         time = itemView.findViewById(R.id.timeDate);

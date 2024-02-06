@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B5A3A3"
+    android:background="@drawable/bullitenboard"
     tools:context=".ActivityToDo">
 
     <LinearLayout
@@ -19,9 +19,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/autour_one"
             android:gravity="center"
             android:text="@string/to_do"
-            android:textSize="24sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
 
         <Button
             android:id="@+id/sortButton"
@@ -32,7 +34,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/CardRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF" />
 
     </LinearLayout>
 
@@ -48,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:backgroundTint="#070707"
             android:text="Add Tasks" />
 
         <Button
@@ -55,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:backgroundTint="#020202"
             android:text="Classes" />
 
     </LinearLayout>
