@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bullitenboard"
+    android:background="@drawable/whiteboard2"
     tools:context=".ActivityToDo">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:fontFamily="@font/autour_one"
             android:gravity="center"
             android:text="@string/to_do"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:textSize="34sp" />
 
         <Button
