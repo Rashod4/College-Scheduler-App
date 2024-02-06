@@ -14,7 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ActivityToDo extends AppCompatActivity {
@@ -34,9 +37,6 @@ public class ActivityToDo extends AppCompatActivity {
         recyclerView = findViewById(R.id.CardRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        courseList = new ArrayList<>();
-        dateList = new ArrayList<>();
-        doneList = new ArrayList<>();
         adapter = new CardAdapter(this, list);
         recyclerView.setAdapter(adapter);
 
@@ -83,7 +83,7 @@ public class ActivityToDo extends AppCompatActivity {
 
     }
 
-    private void showPopupMenu(View view) {
+    public void showPopupMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.getMenuInflater().inflate(R.menu.sort_menu, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -91,11 +91,15 @@ public class ActivityToDo extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 int itemId = item.getItemId();
                 if (itemId == R.id.courseSort) {
-
+                    courseSort(list);
+                } else if (itemId == R.id.dateSort) {
+                    dateSort(list);
                 }
+                adapter.notifyDataSetChanged();
                 return true;
             }
         });
+        popupMenu.show();
     }
     // Method to update SharedPreferences when a task is edited
     void updateTaskInSharedPreferences(int position, CardModel updatedTask) {
@@ -137,8 +141,8 @@ public class ActivityToDo extends AppCompatActivity {
         return true;
     }
 
-    List<CardModel> courseSortList(List<CardModel> unsorted, List<CardModel> courseList) {
-        int n = unsorted.size();
+    void courseSort(List<CardModel> list) {
+        int n = list.size();
         boolean swapped;
         do {
             swapped = false;
@@ -151,6 +155,32 @@ public class ActivityToDo extends AppCompatActivity {
                 }
             }
         } while (swapped);
-        return courseList;
+    }
+
+    void dateSort(List<CardModel> list) {
+        int n = list.size();
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (compareDate(list.get(i).getDate(), list.get(i + 1).getDate()) > 0) {
+                    CardModel temp = list.get(i);
+                    list.set(i, list.get(i + 1));
+                    list.set(i + 1, temp);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+    }
+
+    int compareDate(String date1, String date2) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        try {
+            Date parsedDate1 = dateFormat.parse(date1);
+            Date parsedDate2 = dateFormat.parse(date2);
+            return parsedDate1.compareTo(parsedDate2);
+        } catch (ParseException e) {
+            return 0;
+        }
     }
 }
