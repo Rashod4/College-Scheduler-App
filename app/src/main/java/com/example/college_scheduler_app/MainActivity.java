@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
             String professor = sp.getString("professor" + i, "");
             String section = sp.getString("section" + i, "");
             String roomNumber = sp.getString("roomNumber" + i, "");
-            items.add(new Item(className, professor, section, roomNumber));
+            String location = sp.getString("location" + i, "");
+            String time = sp.getString("time" + i, "");
+            String repeatingDays = sp.getString("repeatingDays" + i, "");
+            items.add(new Item(className, professor, section, roomNumber, location, time, repeatingDays));
         }
         adapter.notifyDataSetChanged();
 
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("professor" + position, updatedClass.getProfessor());
         editor.putString("section" + position, updatedClass.getSection());
         editor.putString("roomNumber" + position, updatedClass.getRoomNumber());
+        editor.putString("location" + position, updatedClass.getLocation());
+        editor.putString("time" + position, updatedClass.getTime());
+        editor.putString("repeatingDays" + position, updatedClass.getRepeatingDays());
 
         editor.apply();
     }
@@ -82,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         editor.remove("professor" + position);
         editor.remove("section" + position);
         editor.remove("roomNumber" + position);
+        editor.remove("location" + position);
+        editor.remove("time" + position);
+        editor.remove("repeatingDays" + position);
 
         // Update task count if necessary
         int taskCount = sp.getInt("taskCount", 0);

@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:backgroundTint="#070707"
-            android:text="Add Tasks" />
+            android:text="Add Exam" />
 
         <Button
             android:id="@+id/classes_button2"
@@ -61,6 +61,14 @@
             android:layout_margin="5dp"
             android:backgroundTint="#020202"
             android:text="Classes" />
+
+        <Button
+            android:id="@+id/task_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="#020202"
+            android:text="Add Task" />
 
     </LinearLayout>
 

@@ -11,14 +11,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ActivityAddTask extends AppCompatActivity {
+public class ActivityAddExam extends AppCompatActivity {
     private SharedPreferences sp;
     int taskCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.task_add_view);
+        setContentView(R.layout.exam_add_view);
 
         sp = getSharedPreferences("TaskDetails", Context.MODE_PRIVATE);
         taskCount = sp.getInt("taskCount", 0); // Retrieve the task count
@@ -26,7 +26,8 @@ public class ActivityAddTask extends AppCompatActivity {
         EditText editTask = findViewById(R.id.edit_task);
         EditText editDate = findViewById(R.id.edit_date);
         EditText editCourse = findViewById(R.id.edit_course);
-
+        EditText editTime = findViewById(R.id.edit_time);
+        EditText editLocation = findViewById(R.id.edit_location);
 
         Button add_task = findViewById(R.id.add_button);
         add_task.setOnClickListener(new View.OnClickListener() {
@@ -35,19 +36,25 @@ public class ActivityAddTask extends AppCompatActivity {
                 String task = editTask.getText().toString().trim();
                 String date = editDate.getText().toString().trim();
                 String course = editCourse.getText().toString().trim();
+                String time = editTime.getText().toString().trim();
+                String location = editLocation.getText().toString().trim();
 
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString("task" + taskCount, task);
                 editor.putString("date" + taskCount, date);
                 editor.putString("course" + taskCount, course);
+                editor.putString("time" + taskCount, time);
+                editor.putString("location" + taskCount, location);
                 editor.putInt("taskCount", taskCount + 1); // Increment the task count
                 editor.apply();
-                Toast.makeText(ActivityAddTask.this, "Task Details Added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityAddExam.this, "Task Details Added", Toast.LENGTH_SHORT).show();
 
                 // Clear the EditText fields after adding the item
                 editTask.getText().clear();
                 editDate.getText().clear();
                 editCourse.getText().clear();
+                editTime.getText().clear();
+                editLocation.getText().clear();
             }
         });
 
@@ -55,10 +62,9 @@ public class ActivityAddTask extends AppCompatActivity {
         tasks_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityAddTask.this, ActivityToDo.class);
+                Intent intent = new Intent(ActivityAddExam.this, ActivityToDo.class);
                 startActivity(intent);
             }
         });
     }
 }
-

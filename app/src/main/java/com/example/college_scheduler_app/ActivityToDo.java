@@ -64,11 +64,20 @@ public class ActivityToDo extends AppCompatActivity {
             }
         });
 
+        Button real_task_add = findViewById(R.id.task_add);
+        real_task_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityToDo.this, ActivityAddTask.class);
+                startActivity(intent);
+            }
+        });
+
         Button add_task_button = findViewById(R.id.add_tasks);
         add_task_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityToDo.this, ActivityAddTask.class);
+                Intent intent = new Intent(ActivityToDo.this, ActivityAddExam.class);
                 startActivity(intent);
             }
         });
