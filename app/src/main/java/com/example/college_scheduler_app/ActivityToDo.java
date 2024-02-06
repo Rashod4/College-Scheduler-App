@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.PopupMenu;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,13 +14,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ActivityToDo extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CardAdapter adapter;
     private List<CardModel> list;
+    private List<CardModel> courseList;
+    private List<CardModel> dateList;
+    private List<CardModel> doneList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,7 @@ public class ActivityToDo extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
 
+
         Button classes_button = findViewById(R.id.classes_button2);
         classes_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +73,33 @@ public class ActivityToDo extends AppCompatActivity {
             }
         });
 
+        Button sortButton = findViewById(R.id.sortButton);
+        sortButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(v);
+            }
+        });
+
+    }
+
+    public void showPopupMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.sort_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.courseSort) {
+                    courseSort(list);
+                } else if (itemId == R.id.dateSort) {
+                    dateSort(list);
+                }
+                adapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+        popupMenu.show();
     }
     // Method to update SharedPreferences when a task is edited
     void updateTaskInSharedPreferences(int position, CardModel updatedTask) {
@@ -102,5 +139,48 @@ public class ActivityToDo extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    void courseSort(List<CardModel> list) {
+        int n = list.size();
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (list.get(i).getCourse().compareTo(list.get(i + 1).getCourse()) > 0) {
+                    CardModel temp = list.get(i);
+                    list.set(i, list.get(i + 1));
+                    list.set(i + 1, temp);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+    }
+
+    void dateSort(List<CardModel> list) {
+        int n = list.size();
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 0; i < n - 1; i++) {
+                if (compareDate(list.get(i).getDate(), list.get(i + 1).getDate()) > 0) {
+                    CardModel temp = list.get(i);
+                    list.set(i, list.get(i + 1));
+                    list.set(i + 1, temp);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+    }
+
+    int compareDate(String date1, String date2) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        try {
+            Date parsedDate1 = dateFormat.parse(date1);
+            Date parsedDate2 = dateFormat.parse(date2);
+            return parsedDate1.compareTo(parsedDate2);
+        } catch (ParseException e) {
+            return 0;
+        }
     }
 }

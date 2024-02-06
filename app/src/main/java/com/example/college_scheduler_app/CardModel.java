@@ -6,6 +6,7 @@ public class CardModel {
     private String course;
     private String time;
     private String location;
+    private boolean done;
 
     public CardModel(String task, String date, String course, String time, String location) {
         this.task = task;
@@ -13,6 +14,7 @@ public class CardModel {
         this.course = course;
         this.time = time;
         this.location = location;
+        this.done = false;
     }
 
     public String getTask() {
@@ -54,4 +56,6 @@ public class CardModel {
     public void setLocation(String location) {
         this.location = location;
     }
+    public boolean getDone(){ return done;}
+    public void setDone(boolean done){ this.done = done;}
 }
