@@ -5,7 +5,7 @@
     tools:context=".ActivityAddExam"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bullitenboard">
+    android:background="@drawable/whiteboard2">
 
     <TextView
         android:id="@+id/title"
@@ -22,17 +22,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:layout_marginTop="0dp"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/edit_task"
             android:layout_width="match_parent"
-            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:hint="Task"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/edit_date"
@@ -42,13 +41,23 @@
             android:textColorHint="@color/black"
             android:textColor="@color/black"/>
 
+
         <EditText
             android:id="@+id/edit_course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Course"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/edit_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
 
         <LinearLayout
@@ -64,6 +73,7 @@
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/black"
                 android:text="@string/add" />
+
 
             <Button
                 android:id="@+id/tasks_back"
