@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/blackboard">
 
     <TextView
         android:id="@+id/title"
@@ -14,47 +15,63 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/add_classes"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:fontFamily="casual"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
         android:layout_marginTop="0dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#E91E63"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/edit_text_class_name"
             android:layout_width="match_parent"
-            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
-            android:hint="Class Name" />
+            android:layout_marginTop="40dp"
+            android:hint="Class Name"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="casual"
+            />
 
         <EditText
             android:id="@+id/edit_text_professor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Professor" />
+            android:hint="Professor"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="casual"/>
 
         <EditText
             android:id="@+id/edit_text_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Section" />
+            android:hint="Section"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="casual"/>
 
         <EditText
             android:id="@+id/edit_text_room_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Room Number"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="casual"/>
 
         <!-- Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/add_button"
