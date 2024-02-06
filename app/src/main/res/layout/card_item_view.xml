@@ -19,19 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="sans-serif-condensed-medium"
             android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             tools:text="Task" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/task"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/aldrich"
+            android:layout_below="@id/task"
             android:textColor="@color/black"
             tools:text="date" />
 
@@ -39,9 +36,8 @@
             android:id="@+id/course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/date"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/aldrich"
+            android:layout_below="@id/date"
             android:textColor="@color/black"
             tools:text="course" />
 
@@ -49,9 +45,8 @@
             android:id="@+id/timeDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/course"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/aldrich"
+            android:layout_below="@id/course"
             android:textColor="@color/black"
             tools:text="time" />
 
@@ -59,9 +54,8 @@
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/timeDate"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/aldrich"
+            android:layout_below="@id/timeDate"
             android:textColor="@color/black"
             tools:text="location" />
 
@@ -82,6 +76,7 @@
                 android:backgroundTint="#26A22B"
                 android:text="Done" />
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
