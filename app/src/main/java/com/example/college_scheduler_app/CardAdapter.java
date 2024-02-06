@@ -3,6 +3,7 @@ package com.example.college_scheduler_app;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
+        CardModel cardModel = details.get(position);
         holder.task.setText(details.get(position).getTask());
         holder.date.setText(details.get(position).getDate());
         holder.course.setText(details.get(position).getCourse());
@@ -63,6 +65,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 editCourse.setText(details.get(holder.getAdapterPosition()).getCourse());
                 editTime.setText(details.get(holder.getAdapterPosition()).getTime());
                 editLocation.setText(details.get(holder.getAdapterPosition()).getLocation());
+                Button finished_button = dialog.findViewById(R.id.finished_button);
 
                 add_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -106,6 +109,28 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         // Notify the adapter about the removal
                         notifyItemRemoved(adapterPosition);
 
+                        dialog.dismiss();
+                    }
+                });
+                finished_button.setOnClickListener(new View.OnClickListener() { // Set OnClickListener for finished_button
+                    @Override
+                    public void onClick(View v) {
+                        // Perform your desired action when finished_button is clicked
+                        Log.d("CardAdapter", "Finished Button Clicked");
+
+                        CardModel cardModel = details.get(holder.getAdapterPosition());
+
+                        // Toggle the value of done field
+                        cardModel.setDone(!cardModel.getDone());
+
+                        if (cardModel.getDone()) {
+                            holder.task.setTextColor(Color.GREEN);
+                        } else {
+                            // Set default text color for tasks
+                            holder.task.setTextColor(Color.BLACK);
+                        }
+
+                        // Dismiss the dialog
                         dialog.dismiss();
                     }
                 });
