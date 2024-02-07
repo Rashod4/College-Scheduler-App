@@ -5,7 +5,7 @@
     tools:context=".ActivityAddExam"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bullitenboard">
+    android:background="@drawable/whiteboard2">
 
     <TextView
         android:id="@+id/title"
@@ -89,6 +89,7 @@
             android:layout_margin="5dp"
             android:backgroundTint="@color/black"
             android:text="Tasks" />
+
     </LinearLayout>
 
     </LinearLayout>

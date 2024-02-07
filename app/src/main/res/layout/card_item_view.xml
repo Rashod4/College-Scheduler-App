@@ -61,21 +61,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/location"
             android:layout_marginTop="20dp"
             android:background="#F8F8F8"
             android:backgroundTint="#F8F6F6"
-            android:foregroundTint="#F6F0F0" >
-
-            <Button
-                android:id="@+id/done_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#26A22B"
-                android:text="Done" />
-        </LinearLayout>
+            android:foregroundTint="#F6F0F0" />
 
     </LinearLayout>
 
