@@ -66,6 +66,34 @@
             android:textColor="@color/white"
             android:fontFamily="casual"/>
 
+        <EditText
+            android:id="@+id/edit_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="casual"/>
+
+        <EditText
+            android:id="@+id/edit_text_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="casual"/>
+
+
+        <EditText
+            android:id="@+id/edit_repeating_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Repeating Days"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:fontFamily="casual"/>
+
         <!-- Buttons -->
         <LinearLayout
             android:layout_width="match_parent"

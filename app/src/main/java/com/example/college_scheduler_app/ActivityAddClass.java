@@ -27,6 +27,9 @@ public class ActivityAddClass extends AppCompatActivity {
         EditText professorEditText = findViewById(R.id.edit_text_professor);
         EditText sectionEditText = findViewById(R.id.edit_text_section);
         EditText roomNumberEditText = findViewById(R.id.edit_text_room_number);
+        EditText locationEditText = findViewById(R.id.edit_location);
+        EditText timeEditText = findViewById(R.id.edit_text_time);
+        EditText repeatingDaysEditText = findViewById(R.id.edit_repeating_days);
 
         Button addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -36,8 +39,11 @@ public class ActivityAddClass extends AppCompatActivity {
                 String professor = professorEditText.getText().toString().trim();
                 String section = sectionEditText.getText().toString().trim();
                 String roomNumber = roomNumberEditText.getText().toString().trim();
+                String location = locationEditText.getText().toString().trim();
+                String time = timeEditText.getText().toString().trim();
+                String repeatingDays = repeatingDaysEditText.getText().toString().trim();
 
-                if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty()) {
+                if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty()) {
                     Toast.makeText(ActivityAddClass.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -46,6 +52,9 @@ public class ActivityAddClass extends AppCompatActivity {
                     editor.putString("professor" + taskCount, professor);
                     editor.putString("section" + taskCount, section);
                     editor.putString("roomNumber" + taskCount, roomNumber);
+                    editor.putString("location" + taskCount, location);
+                    editor.putString("time" + taskCount, time);
+                    editor.putString("repeatingDays" + taskCount, repeatingDays);
                     editor.putInt("taskCount", taskCount + 1); // Increment the task count
                     editor.apply();
                     Toast.makeText(ActivityAddClass.this, "Task Details Added", Toast.LENGTH_SHORT).show();
@@ -63,6 +72,9 @@ public class ActivityAddClass extends AppCompatActivity {
                 professorEditText.getText().clear();
                 sectionEditText.getText().clear();
                 roomNumberEditText.getText().clear();
+                locationEditText.getText().clear();
+                timeEditText.getText().clear();
+                repeatingDaysEditText.getText().clear();
 
             }
         });

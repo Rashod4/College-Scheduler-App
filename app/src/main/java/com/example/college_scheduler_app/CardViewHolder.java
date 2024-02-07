@@ -22,5 +22,6 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
         time = itemView.findViewById(R.id.timeDate);
         location = itemView.findViewById(R.id.location);
         llrow = itemView.findViewById(R.id.llrow);
+        //done = itemView.findViewById(R.id.done_button);
     }
 }
