@@ -66,8 +66,7 @@
             android:layout_marginTop="20dp"
             android:background="#F8F8F8"
             android:backgroundTint="#F8F6F6"
-            android:foregroundTint="#F6F0F0"/>
-
+            android:foregroundTint="#F6F0F0" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

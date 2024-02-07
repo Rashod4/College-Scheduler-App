@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cardView"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ActivityAddExam"
@@ -15,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="Add Task"
+        android:text="Edit Task"
         android:textColor="@color/black"
         android:textSize="34sp" />
 
@@ -23,22 +22,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/edit_task"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:hint="Task"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:layout_height="wrap_content"
+            android:hint="Exam"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Due Date"
+            android:hint="Date"
             android:textColorHint="@color/black"
             android:textColor="@color/black"/>
 
@@ -47,8 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Course"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/edit_time"
@@ -56,26 +56,50 @@
             android:layout_height="wrap_content"
             android:hint="Time"
             android:inputType="number"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
-        <Button
-            android:id="@+id/add_button"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/edit_location"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/black"
-            android:text="@string/add" />
+            android:hint="Location"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
 
-        <Button
-            android:id="@+id/tasks_back"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/black"
-            android:text="Tasks" />
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/add_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/black"
+                android:text="@string/add" />
+
+            <Button
+                android:id="@+id/tasks_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/black"
+                android:text="Tasks" />
+
+            <Button
+                android:id="@+id/finished_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#26A92B"
+                android:text="Done" />
+        </LinearLayout>
 
     </LinearLayout>
+
 
 </RelativeLayout>
