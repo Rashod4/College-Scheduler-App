@@ -1,5 +1,6 @@
 package com.example.college_scheduler_app;
 
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -12,26 +13,32 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import java.util.List;
+
 
 public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     Context context;
     List<CardModel> details;
     LinearLayout llrow;
 
+
     public CardAdapter(Context context, List<CardModel> details) {
         this.context = context;
         this.details = details;
     }
+
 
     @NonNull
     @Override
     public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new CardViewHolder(LayoutInflater.from(context).inflate(R.layout.card_item_view, parent, false));
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
@@ -42,11 +49,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         holder.location.setText(details.get(position).getLocation());
 
 
+
+
         holder.llrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.edit_task_view);
+
 
                 EditText editTask = dialog.findViewById(R.id.edit_task);
                 EditText editDate = dialog.findViewById(R.id.edit_date);
@@ -57,14 +67,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 TextView title = dialog.findViewById(R.id.title);
                 Button finished_button = dialog.findViewById(R.id.finished_button);
 
+
                 title.setText("Edit Task");
                 add_button.setText("Update");
+
 
                 editTask.setText(details.get(holder.getAdapterPosition()).getTask());
                 editDate.setText(details.get(holder.getAdapterPosition()).getDate());
                 editCourse.setText(details.get(holder.getAdapterPosition()).getCourse());
                 editTime.setText(details.get(holder.getAdapterPosition()).getTime());
                 editLocation.setText(details.get(holder.getAdapterPosition()).getLocation());
+
 
                 add_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -75,6 +88,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         String time = editTime.getText().toString();
                         String location = editLocation.getText().toString();
 
+
                         CardModel updatedTask = new CardModel(task, date, course, time, location);
                         details.set(holder.getAdapterPosition(), updatedTask);
                         notifyItemChanged(holder.getAdapterPosition());
@@ -82,10 +96,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         // Update SharedPreferences
                         ((ActivityToDo) context).updateTaskInSharedPreferences(holder.getAdapterPosition(), updatedTask);
 
+
                         dialog.dismiss();
                     }
                 });
                 dialog.show();
+
 
                 Button delete = dialog.findViewById(R.id.tasks_back);
                 delete.setText("Delete");
@@ -93,6 +109,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                     @Override
                     public void onClick(View v) {
                         int adapterPosition = holder.getAdapterPosition();
+
+
 
                         // Remove the item from SharedPreferences
                         ((ActivityToDo) context).deleteTaskFromSharedPreferences(adapterPosition);
@@ -108,6 +126,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         // Notify the adapter about the removal
                         notifyItemRemoved(adapterPosition);
 
+
                         dialog.dismiss();
                     }
                 });
@@ -118,10 +137,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         Log.d("CardAdapter", "Finished Button Clicked");
 
 
+
+
                         CardModel cardModel = details.get(holder.getAdapterPosition());
 
                         // Toggle the value of done field
                         cardModel.setDone(!cardModel.getDone());
+
+
 
 
                         if (cardModel.getDone()) {
@@ -136,9 +159,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                     }
                 });
 
+
             }
         });
     }
+
+
 
 
     @Override
