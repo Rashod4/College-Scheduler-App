@@ -39,22 +39,36 @@ public class ActivityAddExam extends AppCompatActivity {
                 String time = editTime.getText().toString().trim();
                 String location = editLocation.getText().toString().trim();
 
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString("task" + taskCount, task);
-                editor.putString("date" + taskCount, date);
-                editor.putString("course" + taskCount, course);
-                editor.putString("time" + taskCount, time);
-                editor.putString("location" + taskCount, location);
-                editor.putInt("taskCount", taskCount + 1); // Increment the task count
-                editor.apply();
-                Toast.makeText(ActivityAddExam.this, "Task Details Added", Toast.LENGTH_SHORT).show();
+                if (task.isEmpty() || date.isEmpty() || course.isEmpty() || time.isEmpty() || location.isEmpty()) {
+                    Toast.makeText(ActivityAddExam.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (!isValidDateFormat(date)) {
+                        Toast.makeText(ActivityAddExam.this, "Please enter the date in the format mm-dd-yyyy", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("task" + taskCount, task);
+                    editor.putString("date" + taskCount, date);
+                    editor.putString("course" + taskCount, course);
+                    editor.putString("time" + taskCount, time);
+                    editor.putString("location" + taskCount, location);
+                    editor.putInt("taskCount", taskCount + 1); // Increment the task count
+                    editor.apply();
+                    Toast.makeText(ActivityAddExam.this, "Task Details Added", Toast.LENGTH_SHORT).show();
 
-                // Clear the EditText fields after adding the item
-                editTask.getText().clear();
-                editDate.getText().clear();
-                editCourse.getText().clear();
-                editTime.getText().clear();
-                editLocation.getText().clear();
+                    // Clear the EditText fields after adding the item
+                    editTask.getText().clear();
+                    editDate.getText().clear();
+                    editCourse.getText().clear();
+                    editTime.getText().clear();
+                    editLocation.getText().clear();
+                }
+            }
+            private boolean isValidDateFormat(String date) {
+                // Define regex pattern for mm-dd-yyyy format
+                String regexPattern = "(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-(19|20)\\d\\d";
+                // Check if the date matches the regex pattern
+                return date.matches(regexPattern);
             }
         });
 

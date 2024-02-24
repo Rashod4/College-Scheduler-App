@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.llrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Item clicked");
                 Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.class_add_view);
 
@@ -80,6 +80,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                         String location = editLocatoin.getText().toString();
                         String time = editTime.getText().toString();
                         String repeatingDays = editRepeatingDays.getText().toString();
+
+                        // Check if any field is empty
+                        if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty() || repeatingDays.isEmpty()) {
+                            // Show a toast message indicating that all fields must be filled
+                            Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                            return; // Exit the method if any field is empty
+                        }
 
                         Item updatedClass = new Item(className, professor, section, roomNumber, location, time, repeatingDays);
                         items.set(holder.getAdapterPosition(), updatedClass);

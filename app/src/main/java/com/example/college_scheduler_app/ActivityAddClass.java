@@ -43,7 +43,7 @@ public class ActivityAddClass extends AppCompatActivity {
                 String time = timeEditText.getText().toString().trim();
                 String repeatingDays = repeatingDaysEditText.getText().toString().trim();
 
-                if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty()) {
+                if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty() || repeatingDays.isEmpty()) {
                     Toast.makeText(ActivityAddClass.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -58,23 +58,17 @@ public class ActivityAddClass extends AppCompatActivity {
                     editor.putInt("taskCount", taskCount + 1); // Increment the task count
                     editor.apply();
                     Toast.makeText(ActivityAddClass.this, "Task Details Added", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(ActivityAddClass.this, MainActivity.class);
-//                    intent.putExtra("className", className);
-//                    intent.putExtra("professor", professor);
-//                    intent.putExtra("section", section);
-//                    intent.putExtra("roomNumber", roomNumber);
-//                    setResult(RESULT_OK, intent);
-//                    finish();
+//
+                    // Clear the EditText fields after adding the item
+                    classNameEditText.getText().clear();
+                    professorEditText.getText().clear();
+                    sectionEditText.getText().clear();
+                    roomNumberEditText.getText().clear();
+                    locationEditText.getText().clear();
+                    timeEditText.getText().clear();
+                    repeatingDaysEditText.getText().clear();
                 }
 
-                // Clear the EditText fields after adding the item
-                classNameEditText.getText().clear();
-                professorEditText.getText().clear();
-                sectionEditText.getText().clear();
-                roomNumberEditText.getText().clear();
-                locationEditText.getText().clear();
-                timeEditText.getText().clear();
-                repeatingDaysEditText.getText().clear();
 
             }
         });
