@@ -26,6 +26,7 @@ public class ActivityAddTask extends AppCompatActivity {
         EditText editTask = findViewById(R.id.edit_task);
         EditText editDate = findViewById(R.id.edit_date);
         EditText editCourse = findViewById(R.id.edit_course);
+        EditText editTime = findViewById(R.id.edit_time);
 
 
         Button add_task = findViewById(R.id.add_button);
@@ -35,21 +36,43 @@ public class ActivityAddTask extends AppCompatActivity {
                 String task = editTask.getText().toString().trim();
                 String date = editDate.getText().toString().trim();
                 String course = editCourse.getText().toString().trim();
+                String time = editTime.getText().toString().trim();
 
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString("task" + taskCount, task);
-                editor.putString("date" + taskCount, date);
-                editor.putString("course" + taskCount, course);
-                editor.putInt("taskCount", taskCount + 1); // Increment the task count
-                editor.apply();
-                Toast.makeText(ActivityAddTask.this, "Task Details Added", Toast.LENGTH_SHORT).show();
+                if (task.isEmpty() || date.isEmpty() || course.isEmpty() || time.isEmpty()) {
+                    Toast.makeText(ActivityAddTask.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Check if the date format is correct (mm-dd-yyyy)
+                    if (!isValidDateFormat(date)) {
+                        Toast.makeText(ActivityAddTask.this, "Please enter the date in the format mm-dd-yyyy", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("task" + taskCount, task);
+                    editor.putString("date" + taskCount, date);
+                    editor.putString("course" + taskCount, course);
+                    editor.putString("time" + taskCount, time);
+                    editor.putInt("taskCount", taskCount + 1); // Increment the task count
+                    editor.apply();
+                    Toast.makeText(ActivityAddTask.this, "Task Details Added", Toast.LENGTH_SHORT).show();
 
-                // Clear the EditText fields after adding the item
-                editTask.getText().clear();
-                editDate.getText().clear();
-                editCourse.getText().clear();
+                    // Clear the EditText fields after adding the item
+                    editTask.getText().clear();
+                    editDate.getText().clear();
+                    editCourse.getText().clear();
+                    editTime.getText().clear();
+                }
+
+
+            }
+
+            private boolean isValidDateFormat(String date) {
+                // Define regex pattern for mm-dd-yyyy format
+                String regexPattern = "(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-(19|20)\\d\\d";
+                // Check if the date matches the regex pattern
+                return date.matches(regexPattern);
             }
         });
+
 
         Button tasks_button = findViewById(R.id.tasks_back);
         tasks_button.setOnClickListener(new View.OnClickListener() {

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -88,6 +89,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         String time = editTime.getText().toString();
                         String location = editLocation.getText().toString();
 
+                        if (task.isEmpty() || date.isEmpty() || course.isEmpty() || time.isEmpty() || location.isEmpty()) {
+                            // Show a toast message indicating that all fields must be filled
+                            Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                            return; // Exit the method if any field is empty
+                        }
 
                         CardModel updatedTask = new CardModel(task, date, course, time, location);
                         details.set(holder.getAdapterPosition(), updatedTask);
