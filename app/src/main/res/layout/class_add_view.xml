@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blackboard">
+    android:background="@drawable/gatechwallpaper"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/title"
@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="10dp"
+        android:fontFamily="@font/alata"
         android:gravity="center"
         android:text="@string/add_classes"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:fontFamily="casual"/>
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,72 +32,71 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:fontFamily="alata"
             android:hint="Class Name"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:fontFamily="casual"
-            />
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/edit_text_professor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
             android:hint="Professor"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:fontFamily="casual"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/edit_text_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
             android:hint="Section"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:fontFamily="casual"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/edit_text_room_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
             android:hint="Room Number"
             android:inputType="number"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:fontFamily="casual"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/edit_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
             android:hint="Location"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:fontFamily="casual"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/edit_text_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
             android:hint="Time"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:fontFamily="casual"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
 
         <EditText
             android:id="@+id/edit_repeating_days"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
             android:hint="Repeating Days"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:fontFamily="casual"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <!-- Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="348dp"
             android:gravity="center"
             android:orientation="horizontal">
 
