@@ -2,27 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blackboard">
+    android:background="@drawable/gatechwallpaper"
+    tools:context=".MainActivity">
     <!--    android:orientation="vertical"-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="12dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_marginBottom="12dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="casual"
+            android:fontFamily="@font/alata"
             android:gravity="center"
             android:text="@string/classes"
-            android:textColor="#F1EBEB"
+            android:textColor="@color/black"
             android:textSize="34sp"
             android:typeface="normal" />
 
@@ -37,9 +37,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/add_classes"
