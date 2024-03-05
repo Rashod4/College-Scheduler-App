@@ -17,6 +17,15 @@ public class CardModel {
         this.done = false;
     }
 
+    public CardModel(String task, String date, String course, String time, String location, boolean done) {
+        this.task = task;
+        this.date = date;
+        this.course = course;
+        this.time = time;
+        this.location = location;
+        this.done = done;
+    }
+
     public String getTask() {
         return task;
     }
