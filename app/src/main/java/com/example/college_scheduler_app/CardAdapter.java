@@ -48,6 +48,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         holder.course.setText(details.get(position).getCourse());
         holder.time.setText(details.get(position).getTime());
         holder.location.setText(details.get(position).getLocation());
+        if (details.get(position).getDone() == true) {
+            holder.task.setTextColor(Color.GREEN);
+        } else {
+            holder.task.setTextColor(Color.BLACK);
+        }
 
 
 
@@ -132,7 +137,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         // Notify the adapter about the removal
                         notifyItemRemoved(adapterPosition);
 
-
                         dialog.dismiss();
                     }
                 });
@@ -142,16 +146,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         // Perform your desired action when finished_button is clicked
                         Log.d("CardAdapter", "Finished Button Clicked");
 
-
-
-
                         CardModel cardModel = details.get(holder.getAdapterPosition());
 
                         // Toggle the value of done field
                         cardModel.setDone(!cardModel.getDone());
-
-
-
 
                         if (cardModel.getDone()) {
                             holder.task.setTextColor(Color.GREEN);
@@ -159,6 +157,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                             // Set default text color for tasks
                             holder.task.setTextColor(Color.BLACK);
                         }
+
 
                         // Dismiss the dialog
                         dialog.dismiss();
