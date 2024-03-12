@@ -37,7 +37,7 @@ public class ActivityAddClass extends AppCompatActivity {
         EditText locationEditText = findViewById(R.id.edit_location);
         //EditText timeEditText = findViewById(R.id.edit_text_time);
         timeButton = findViewById(R.id.edit_text_time);
-        EditText repeatingDaysEditText = findViewById(R.id.edit_repeating_days);
+        //EditText repeatingDaysEditText = findViewById(R.id.edit_repeating_days);
 
         Button addButton = findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -49,9 +49,9 @@ public class ActivityAddClass extends AppCompatActivity {
                 String roomNumber = roomNumberEditText.getText().toString().trim();
                 String location = locationEditText.getText().toString().trim();
                 String time = timeButton.getText().toString().trim();
-                String repeatingDays = repeatingDaysEditText.getText().toString().trim();
+                //String repeatingDays = repeatingDaysEditText.getText().toString().trim();
 
-                if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty() || repeatingDays.isEmpty()) {
+                if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty()) {
                     Toast.makeText(ActivityAddClass.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -62,7 +62,7 @@ public class ActivityAddClass extends AppCompatActivity {
                     editor.putString("roomNumber" + taskCount, roomNumber);
                     editor.putString("location" + taskCount, location);
                     editor.putString("time" + taskCount, selectedTimeString);
-                    editor.putString("repeatingDays" + taskCount, repeatingDays);
+                    //editor.putString("repeatingDays" + taskCount, repeatingDays);
                     editor.putInt("taskCount", taskCount + 1); // Increment the task count
                     editor.apply();
                     Toast.makeText(ActivityAddClass.this, "Task Details Added", Toast.LENGTH_SHORT).show();
@@ -75,7 +75,7 @@ public class ActivityAddClass extends AppCompatActivity {
                     locationEditText.getText().clear();
                     timeButton.setText("");
                     //timeEditText.getText().clear();
-                    repeatingDaysEditText.getText().clear();
+                    //repeatingDaysEditText.getText().clear();
                 }
 
 
@@ -87,6 +87,161 @@ public class ActivityAddClass extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityAddClass.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        Button mondayButton = findViewById(R.id.monday);
+        mondayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String time = timeButton.getText().toString().trim();
+
+                if (time.isEmpty()) {
+                    Toast.makeText(ActivityAddClass.this, "Please select a time first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if "Monday" is already in the time string
+                boolean containsMonday = time.contains("Monday ");
+
+                if (containsMonday) {
+                    // If Monday is already in the time string, remove it
+                    time = time.replace("Monday ", "");
+                } else {
+                    // If Monday is not in the time string, add it
+                    time = "Monday " + time;
+                }
+
+                // Update the selectedTimeString
+                selectedTimeString = time;
+
+                // Update the timeButton text
+                timeButton.setText(selectedTimeString);
+            }
+        });
+
+        Button tuesdayButton = findViewById(R.id.tuesday);
+        tuesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String time = timeButton.getText().toString().trim();
+
+                if (time.isEmpty()) {
+                    Toast.makeText(ActivityAddClass.this, "Please select a time first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if "Tuesday" is already in the time string
+                boolean containsTuesday = time.contains("Tuesday ");
+
+                if (containsTuesday) {
+                    // If Tuesday is already in the time string, remove it
+                    time = time.replace("Tuesday ", "");
+                } else {
+                    // If Tuesday is not in the time string, add it
+                    time = "Tuesday " + time;
+                }
+
+                // Update the selectedTimeString
+                selectedTimeString = time;
+
+                // Update the timeButton text
+                timeButton.setText(selectedTimeString);
+            }
+        });
+
+// Similarly for Wednesday, Thursday, and Friday buttons
+
+        // Wednesday button
+        Button wednesdayButton = findViewById(R.id.wednesday);
+        wednesdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String time = timeButton.getText().toString().trim();
+
+                if (time.isEmpty()) {
+                    Toast.makeText(ActivityAddClass.this, "Please select a time first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if "Wednesday" is already in the time string
+                boolean containsWednesday = time.contains("Wednesday ");
+
+                if (containsWednesday) {
+                    // If Wednesday is already in the time string, remove it
+                    time = time.replace("Wednesday ", "");
+                } else {
+                    // If Wednesday is not in the time string, add it
+                    time = "Wednesday " + time;
+                }
+
+                // Update the selectedTimeString
+                selectedTimeString = time;
+
+                // Update the timeButton text
+                timeButton.setText(selectedTimeString);
+            }
+        });
+
+// Thursday button
+        Button thursdayButton = findViewById(R.id.thursday);
+        thursdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String time = timeButton.getText().toString().trim();
+
+                if (time.isEmpty()) {
+                    Toast.makeText(ActivityAddClass.this, "Please select a time first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if "Thursday" is already in the time string
+                boolean containsThursday = time.contains("Thursday ");
+
+                if (containsThursday) {
+                    // If Thursday is already in the time string, remove it
+                    time = time.replace("Thursday ", "");
+                } else {
+                    // If Thursday is not in the time string, add it
+                    time = "Thursday " + time;
+                }
+
+                // Update the selectedTimeString
+                selectedTimeString = time;
+
+                // Update the timeButton text
+                timeButton.setText(selectedTimeString);
+            }
+        });
+
+// Friday button
+        Button fridayButton = findViewById(R.id.friday);
+        fridayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String time = timeButton.getText().toString().trim();
+
+                if (time.isEmpty()) {
+                    Toast.makeText(ActivityAddClass.this, "Please select a time first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if "Friday" is already in the time string
+                boolean containsFriday = time.contains("Friday ");
+
+                if (containsFriday) {
+                    // If Friday is already in the time string, remove it
+                    time = time.replace("Friday ", "");
+                } else {
+                    // If Friday is not in the time string, add it
+                    time = "Friday " + time;
+                }
+
+                // Update the selectedTimeString
+                selectedTimeString = time;
+
+                // Update the timeButton text
+                timeButton.setText(selectedTimeString);
             }
         });
     }
