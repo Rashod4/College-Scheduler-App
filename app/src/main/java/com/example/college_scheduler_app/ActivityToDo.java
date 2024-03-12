@@ -106,8 +106,10 @@ public class ActivityToDo extends AppCompatActivity {
                     courseSort(list);
                 } else if (itemId == R.id.dateSort) {
                     dateSort(list);
-                } else if (itemId == R.id.doneSort) {
-                    doneSort(list);
+                } else if (itemId == R.id.completeSort) {
+                    completeSort(list);
+                } else if (itemId == R.id.incompleteSort) {
+                    incompleteSort(list);
                 }
                 adapter.notifyDataSetChanged();
                 return true;
@@ -157,6 +159,9 @@ public class ActivityToDo extends AppCompatActivity {
 
     // Method to sort the tasks based on course
     void courseSort(List<CardModel> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setVisibility(true);
+        }
         int n = list.size();
         boolean swapped;
         do {
@@ -174,6 +179,9 @@ public class ActivityToDo extends AppCompatActivity {
 
     // Method to sort the tasks by due date
     void dateSort(List<CardModel> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setVisibility(true);
+        }
         int n = list.size();
         boolean swapped;
         do {
@@ -203,6 +211,9 @@ public class ActivityToDo extends AppCompatActivity {
 
     // Method to sort tasks based on complete/incomplete
     void doneSort(List<CardModel> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setVisibility(true);
+        }
         int n = list.size();
         boolean swapped;
         do {
@@ -216,5 +227,27 @@ public class ActivityToDo extends AppCompatActivity {
                 }
             }
         } while (swapped);
+    }
+
+    void completeSort(List<CardModel> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDone() == true) {
+                list.get(i).setVisibility(true);
+            } else {
+                list.get(i).setVisibility(false);
+            }
+            updateTaskInSharedPreferences(i, list.get(i));
+        }
+    }
+
+    void incompleteSort(List<CardModel> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDone() == false) {
+                list.get(i).setVisibility(true);
+            } else {
+                list.get(i).setVisibility(false);
+            }
+            updateTaskInSharedPreferences(i, list.get(i));
+        }
     }
 }

@@ -7,6 +7,9 @@
         android:id="@+id/dateSort"
         android:title="Date Sort" />
     <item
-        android:id="@+id/doneSort"
-        android:title="Done Sort" />
+        android:id="@+id/completeSort"
+        android:title="Complete Sort" />
+    <item
+        android:id="@+id/incompleteSort"
+        android:title="Incomplete Sort" />
 </menu>

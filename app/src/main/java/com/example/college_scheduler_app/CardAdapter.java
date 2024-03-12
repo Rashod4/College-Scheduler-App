@@ -53,6 +53,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         } else {
             holder.task.setTextColor(Color.BLACK);
         }
+        if (details.get(position).getVisibility() == true){
+            holder.itemView.setVisibility(View.VISIBLE);
+        } else {
+            holder.itemView.setVisibility(View.GONE);
+        }
 
 
 
