@@ -44,14 +44,16 @@
 
         <EditText
             android:id="@+id/edit_course"
+            android:onClick="popTimePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Course"
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
-        <EditText
+        <Button
             android:id="@+id/edit_time"
+            android:onClick="popTimePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Time"

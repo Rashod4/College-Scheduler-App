@@ -1,5 +1,6 @@
 package com.example.college_scheduler_app;
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,13 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class ActivityAddTask extends AppCompatActivity {
     private SharedPreferences sp;
     int taskCount = 0;
+    Button timeButton;
+    int hour, minute;
+    private String selectedTimeString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +33,8 @@ public class ActivityAddTask extends AppCompatActivity {
         EditText editTask = findViewById(R.id.edit_task);
         EditText editDate = findViewById(R.id.edit_date);
         EditText editCourse = findViewById(R.id.edit_course);
-        EditText editTime = findViewById(R.id.edit_time);
+        //EditText editTime = findViewById(R.id.edit_time);
+        timeButton = findViewById(R.id.edit_time);
 
 
         Button add_task = findViewById(R.id.add_button);
@@ -36,7 +44,7 @@ public class ActivityAddTask extends AppCompatActivity {
                 String task = editTask.getText().toString().trim();
                 String date = editDate.getText().toString().trim();
                 String course = editCourse.getText().toString().trim();
-                String time = editTime.getText().toString().trim();
+                String time = timeButton.getText().toString().trim();
 
                 if (task.isEmpty() || date.isEmpty() || course.isEmpty() || time.isEmpty()) {
                     Toast.makeText(ActivityAddTask.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
@@ -59,7 +67,8 @@ public class ActivityAddTask extends AppCompatActivity {
                     editTask.getText().clear();
                     editDate.getText().clear();
                     editCourse.getText().clear();
-                    editTime.getText().clear();
+                    //editTime.getText().clear();
+                    timeButton.setText("");
                 }
 
 
@@ -82,6 +91,19 @@ public class ActivityAddTask extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public void popTimePicker(View view) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                hour = selectedHour;
+                minute = selectedMinute;
+                selectedTimeString = String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
+                timeButton.setText(selectedTimeString);
+            }
+        };
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+        timePickerDialog.show();
     }
 }
 
