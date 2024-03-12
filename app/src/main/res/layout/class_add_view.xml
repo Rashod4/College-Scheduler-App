@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/alata"
             android:hint="Time"
+            android:inputType="number"
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
