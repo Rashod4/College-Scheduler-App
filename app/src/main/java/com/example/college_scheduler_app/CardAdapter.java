@@ -67,7 +67,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 EditText editTask = dialog.findViewById(R.id.edit_task);
                 EditText editDate = dialog.findViewById(R.id.edit_date);
                 EditText editCourse = dialog.findViewById(R.id.edit_course);
-                EditText editTime = dialog.findViewById(R.id.edit_time);
+                //EditText editTime = dialog.findViewById(R.id.edit_time);
+                Button timeButton = dialog.findViewById(R.id.edit_time);
                 EditText editLocation = dialog.findViewById(R.id.edit_location);
                 Button add_button = dialog.findViewById(R.id.add_button);
                 TextView title = dialog.findViewById(R.id.title);
@@ -81,7 +82,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 editTask.setText(details.get(holder.getAdapterPosition()).getTask());
                 editDate.setText(details.get(holder.getAdapterPosition()).getDate());
                 editCourse.setText(details.get(holder.getAdapterPosition()).getCourse());
-                editTime.setText(details.get(holder.getAdapterPosition()).getTime());
+                timeButton.setText(details.get(holder.getAdapterPosition()).getTime());
                 editLocation.setText(details.get(holder.getAdapterPosition()).getLocation());
 
 
@@ -91,14 +92,20 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                         String task = editTask.getText().toString();
                         String date = editDate.getText().toString();
                         String course = editCourse.getText().toString();
-                        String time = editTime.getText().toString();
+                        String time = timeButton.getText().toString(); //CHANGE THIS LINE
                         String location = editLocation.getText().toString();
 
                         if (task.isEmpty() || date.isEmpty() || course.isEmpty() || time.isEmpty() || location.isEmpty()) {
                             // Show a toast message indicating that all fields must be filled
                             Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                             return; // Exit the method if any field is empty
+                        } else {
+                            if (!isValidDateFormat(date)) {
+                                Toast.makeText(context, "Please enter the date in the format mm-dd-yyyy", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
+
 
                         CardModel updatedTask = new CardModel(task, date, course, time, location);
                         details.set(holder.getAdapterPosition(), updatedTask);
@@ -169,7 +176,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         });
     }
 
-
+    private boolean isValidDateFormat(String date) {
+        // Define regex pattern for mm-dd-yyyy format
+        String regexPattern = "(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-(19|20)\\d\\d";
+        // Check if the date matches the regex pattern
+        return date.matches(regexPattern);
+    }
 
 
     @Override
