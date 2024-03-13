@@ -53,7 +53,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 EditText editSection = dialog.findViewById(R.id.edit_text_section);
                 EditText editRoomNumber = dialog.findViewById(R.id.edit_text_room_number);
                 EditText editLocatoin = dialog.findViewById(R.id.edit_location);
-                EditText editTime = dialog.findViewById(R.id.edit_text_time);
+                //EditText editTime = dialog.findViewById(R.id.edit_text_time);
+                Button timeButton = dialog.findViewById(R.id.edit_text_time);
                 EditText editRepeatingDays = dialog.findViewById(R.id.edit_repeating_days);
 
                 Button add_button = dialog.findViewById(R.id.add_button);
@@ -67,18 +68,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 editSection.setText(items.get(holder.getAdapterPosition()).getSection());
                 editRoomNumber.setText(items.get(holder.getAdapterPosition()).getRoomNumber());
                 editLocatoin.setText(items.get(holder.getAdapterPosition()).getLocation());
-                editTime.setText(items.get(holder.getAdapterPosition()).getTime());
+                timeButton.setText(items.get(holder.getAdapterPosition()).getTime());
                 editRepeatingDays.setText(items.get(holder.getAdapterPosition()).getRepeatingDays());
 
                 add_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+//                        timeButton.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                            }
+//                        });
                         String className = editClass.getText().toString();
                         String professor = editProfessor.getText().toString();
                         String section = editSection.getText().toString();
                         String roomNumber = editRoomNumber.getText().toString();
                         String location = editLocatoin.getText().toString();
-                        String time = editTime.getText().toString();
+                        String time = timeButton.getText().toString();
                         String repeatingDays = editRepeatingDays.getText().toString();
 
                         // Check if any field is empty
