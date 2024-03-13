@@ -58,6 +58,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         } else {
             holder.itemView.setVisibility(View.GONE);
         }
+        
 
 
 
