@@ -34,7 +34,7 @@ public class ActivityAddClass extends AppCompatActivity {
         EditText professorEditText = findViewById(R.id.edit_text_professor);
         EditText sectionEditText = findViewById(R.id.edit_text_section);
         EditText roomNumberEditText = findViewById(R.id.edit_text_room_number);
-        EditText locationEditText = findViewById(R.id.edit_location);
+        EditText locationEditText = findViewById(R.id.edit_text_location);
         timeButton = findViewById(R.id.edit_text_time);
         final EditText repeatingDaysEditText = findViewById(R.id.edit_repeating_days);
 
