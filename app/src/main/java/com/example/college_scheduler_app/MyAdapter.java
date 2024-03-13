@@ -52,10 +52,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 EditText editProfessor = dialog.findViewById(R.id.edit_text_professor);
                 EditText editSection = dialog.findViewById(R.id.edit_text_section);
                 EditText editRoomNumber = dialog.findViewById(R.id.edit_text_room_number);
-                EditText editLocatoin = dialog.findViewById(R.id.edit_location);
-                //EditText editTime = dialog.findViewById(R.id.edit_text_time);
+                EditText editLocation = dialog.findViewById(R.id.edit_text_location);
                 Button timeButton = dialog.findViewById(R.id.edit_text_time);
-                EditText editRepeatingDays = dialog.findViewById(R.id.edit_repeating_days);
+                EditText editRepeatingDays = dialog.findViewById(R.id.edit_repeating_days); // Access from dialog view
 
                 Button add_button = dialog.findViewById(R.id.add_button);
                 TextView title = dialog.findViewById(R.id.title);
@@ -63,44 +62,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 title.setText("Edit Class");
                 add_button.setText("Update");
 
-                editClass.setText(items.get(holder.getAdapterPosition()).getClassName());
-                editProfessor.setText(items.get(holder.getAdapterPosition()).getProfessor());
-                editSection.setText(items.get(holder.getAdapterPosition()).getSection());
-                editRoomNumber.setText(items.get(holder.getAdapterPosition()).getRoomNumber());
-                editLocatoin.setText(items.get(holder.getAdapterPosition()).getLocation());
-                timeButton.setText(items.get(holder.getAdapterPosition()).getTime());
-                editRepeatingDays.setText(items.get(holder.getAdapterPosition()).getRepeatingDays());
+                editClass.setText(items.get(position).getClassName());
+                editProfessor.setText(items.get(position).getProfessor());
+                editSection.setText(items.get(position).getSection());
+                editRoomNumber.setText(items.get(position).getRoomNumber());
+                editLocation.setText(items.get(position).getLocation());
+                timeButton.setText(items.get(position).getTime());
+                editRepeatingDays.setText(items.get(position).getRepeatingDays());
 
                 add_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        timeButton.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//
-//                            }
-//                        });
                         String className = editClass.getText().toString();
                         String professor = editProfessor.getText().toString();
                         String section = editSection.getText().toString();
                         String roomNumber = editRoomNumber.getText().toString();
-                        String location = editLocatoin.getText().toString();
+                        String location = editLocation.getText().toString();
                         String time = timeButton.getText().toString();
                         String repeatingDays = editRepeatingDays.getText().toString();
 
-                        // Check if any field is empty
                         if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty() || repeatingDays.isEmpty()) {
-                            // Show a toast message indicating that all fields must be filled
                             Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                            return; // Exit the method if any field is empty
+                            return;
                         }
 
                         Item updatedClass = new Item(className, professor, section, roomNumber, location, time, repeatingDays);
-                        items.set(holder.getAdapterPosition(), updatedClass);
-                        notifyItemChanged(holder.getAdapterPosition());
+                        items.set(position, updatedClass);
+                        notifyItemChanged(position);
 
                         // Update SharedPreferences
-                        ((MainActivity) context).updateTaskInSharedPreferences(holder.getAdapterPosition(), updatedClass);
+                        ((MainActivity) context).updateTaskInSharedPreferences(position, updatedClass);
 
                         dialog.dismiss();
                     }
@@ -112,27 +103,75 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int adapterPosition = holder.getAdapterPosition();
-
                         // Remove the item from SharedPreferences
-                        ((MainActivity) context).deleteTaskFromSharedPreferences(adapterPosition);
+                        ((MainActivity) context).deleteTaskFromSharedPreferences(position);
 
                         // Remove the item from the list
-                        items.remove(adapterPosition);
+                        items.remove(position);
 
                         // Update positions in SharedPreferences if necessary
-                        for (int i = adapterPosition; i < items.size(); i++) {
+                        for (int i = position; i < items.size(); i++) {
                             ((MainActivity) context).updateTaskInSharedPreferences(i, items.get(i));
                         }
 
                         // Notify the adapter about the removal
-                        notifyItemRemoved(adapterPosition);
+                        notifyItemRemoved(position);
 
                         dialog.dismiss();
                     }
                 });
+
+                // Add click listeners to day buttons
+                dialog.findViewById(R.id.monday).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleDayInRepeatingDays(editRepeatingDays, "Monday");
+                    }
+                });
+
+                dialog.findViewById(R.id.tuesday).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleDayInRepeatingDays(editRepeatingDays, "Tuesday");
+                    }
+                });
+
+                dialog.findViewById(R.id.wednesday).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleDayInRepeatingDays(editRepeatingDays, "Wednesday");
+                    }
+                });
+
+                dialog.findViewById(R.id.thursday).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleDayInRepeatingDays(editRepeatingDays, "Thursday");
+                    }
+                });
+
+                dialog.findViewById(R.id.friday).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleDayInRepeatingDays(editRepeatingDays, "Friday");
+                    }
+                });
             }
         });
+    }
+
+    private void toggleDayInRepeatingDays(EditText editRepeatingDays, String day) {
+        String repeatingDays = editRepeatingDays.getText().toString().trim();
+        if (repeatingDays.isEmpty()) {
+            repeatingDays = day;
+        } else {
+            if (repeatingDays.contains(day)) {
+                repeatingDays = repeatingDays.replace(day, "").trim();
+            } else {
+                repeatingDays += " " + day;
+            }
+        }
+        editRepeatingDays.setText(repeatingDays);
     }
 
     @Override
@@ -140,4 +179,3 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         return items.size();
     }
 }
-
