@@ -2,6 +2,7 @@ package com.example.college_scheduler_app;
 
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 
@@ -20,12 +22,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.List;
+import java.util.Locale;
 
 
 public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     Context context;
     List<CardModel> details;
     LinearLayout llrow;
+    int hour, minute;
+    private String selectedTimeString;
 
 
     public CardAdapter(Context context, List<CardModel> details) {
@@ -91,6 +96,23 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 timeButton.setText(details.get(holder.getAdapterPosition()).getTime());
                 editLocation.setText(details.get(holder.getAdapterPosition()).getLocation());
 
+                //the time button listener is used for updating the time in the dialog
+                timeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                                hour = selectedHour;
+                                minute = selectedMinute;
+                                selectedTimeString = String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
+                                timeButton.setText(selectedTimeString);
+                            }
+                        };
+                        TimePickerDialog timePickerDialog = new TimePickerDialog(context, onTimeSetListener, hour, minute, true);
+                        timePickerDialog.show();
+                    }
+                });
 
                 add_button.setOnClickListener(new View.OnClickListener() {
                     @Override
