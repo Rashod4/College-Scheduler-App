@@ -1,6 +1,7 @@
 package com.example.college_scheduler_app;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     Context context;
     List<Item> items;
     LinearLayout llrow;
+    int hour, minute;
+    private String selectedTimeString;
 
     public MyAdapter(Context context, List<Item> items) {
         this.context = context;
@@ -53,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 EditText editSection = dialog.findViewById(R.id.edit_text_section);
                 EditText editRoomNumber = dialog.findViewById(R.id.edit_text_room_number);
                 EditText editLocation = dialog.findViewById(R.id.edit_text_location);
+                //EditText editTime = dialog.findViewById(R.id.edit_text_time);
                 Button timeButton = dialog.findViewById(R.id.edit_text_time);
                 EditText editRepeatingDays = dialog.findViewById(R.id.edit_repeating_days); // Access from dialog view
 
@@ -68,7 +74,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 editRoomNumber.setText(items.get(position).getRoomNumber());
                 editLocation.setText(items.get(position).getLocation());
                 timeButton.setText(items.get(position).getTime());
+                //editTime.setText(items.get(position).getTime());
                 editRepeatingDays.setText(items.get(position).getRepeatingDays());
+
+                //the time button listener is used for updating the time in the dialog
+                timeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                                hour = selectedHour;
+                                minute = selectedMinute;
+                                selectedTimeString = String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
+                                timeButton.setText(selectedTimeString);
+                            }
+                        };
+                        TimePickerDialog timePickerDialog = new TimePickerDialog(context, onTimeSetListener, hour, minute, true);
+                        timePickerDialog.show();
+                    }
+                });
 
                 add_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -78,7 +103,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                         String section = editSection.getText().toString();
                         String roomNumber = editRoomNumber.getText().toString();
                         String location = editLocation.getText().toString();
+                        //String time = editTime.getText().toString();
                         String time = timeButton.getText().toString();
+                        //String time = selectedTimeString;
                         String repeatingDays = editRepeatingDays.getText().toString();
 
                         if (className.isEmpty() || professor.isEmpty() || section.isEmpty() || roomNumber.isEmpty() || location.isEmpty() || time.isEmpty() || repeatingDays.isEmpty()) {
